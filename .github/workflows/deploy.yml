@@ -1,0 +1,25 @@
+name: Deploy
+
+# Trigger the workflow on push and pull requests events on the master
+
+on:
+  push:
+    branches: ["master"]
+  pull_requests:
+    branches: ["master"]
+
+
+# authenticated to the server via ssh and run deployment scripts
+
+job:
+  deploy:
+    runs-on: ubuntu-latest
+
+  
+    steps:
+      - uses: actions
+
+    with:
+      host: ${{127.0.0.1}}
+      port: ${{8000}}
+      script: "cd /var/www/mysite && ./.scripts/deploy.sh"
